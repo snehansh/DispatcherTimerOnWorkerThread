@@ -1,0 +1,83 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7AAC2405-9640-4098-B866-5C42F4787D7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NUnitTests</RootNamespace>
+    <AssemblyName>NUnitTests</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="NoArgDelegate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestWithActiveDispatcher.cs" />
+    <Compile Include="TickerTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLib\ClassLib.csproj">
+      <Project>{B2AAD667-1566-4ABC-A3B8-46DCCEB7FDDC}</Project>
+      <Name>ClassLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.15.1\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
